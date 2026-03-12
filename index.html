@@ -1,44 +1,67 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>نظام الحماية SODRX</title>
+    <title>SODRX | Official Portal</title>
     <style>
-        body { background: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; text-align: center; padding-top: 50px; }
-        .terminal { border: 2px solid #00ff41; width: 85%; margin: auto; height: 350px; padding: 20px; background: black; text-align: left; overflow-y: auto; box-shadow: 0 0 20px #00ff41; }
-        .btn { background: #00ff41; color: black; padding: 15px 40px; border: none; font-size: 20px; cursor: pointer; font-weight: bold; margin-top: 20px; border-radius: 8px; }
-        .btn:hover { background: #008f11; box-shadow: 0 0 15px #00ff41; }
-        .danger { color: #ff0000; text-shadow: 0 0 5px red; }
+        body { background: #050505; color: #00ff41; font-family: 'Consolas', monospace; text-align: center; padding-top: 100px; }
+        .terminal { border: 1px solid #00ff41; width: 85%; margin: auto; height: 350px; padding: 20px; background: black; text-align: left; overflow-y: auto; box-shadow: 0 0 15px #00ff41; }
+        .btn { background: #00ff41; color: black; padding: 15px 40px; border: none; font-size: 20px; cursor: pointer; font-weight: bold; border-radius: 5px; }
+        .loading-text { font-size: 24px; letter-spacing: 2px; }
     </style>
 </head>
 <body>
+
     <div id="welcome">
-        <h1>🔐 نظام التحقق الأمني SODRX v1.0</h1>
-        <p>مرحباً بك. هذا النظام مخصص لحماية البيانات الشخصية.</p>
-        <p>اضغط أدناه لتفعيل الفحص الشامل وتأكيد هويتك.</p>
-        <button class="btn" onclick="start()">تفعيل الفحص الآن</button>
+        <h1>🔐 SODRX GATEWAY</h1>
+        <p>Private Server Access Protocol</p>
+        <button class="btn" onclick="startRedirect()">ENTER PRIVATE ROOM</button>
+    </div>
+
+    <div id="redirecting" style="display:none;">
+        <h2 class="loading-text">PLEASE WAIT...</h2>
+        <p>You are being redirected to <strong>SODRX PRIVATE ROOM</strong></p>
+        <p id="dots">...</p>
     </div>
 
     <div id="screen" style="display:none;">
-        <h2 class="danger">🚨 تم رصد محاولة وصول غير مصرح بها! جاري الرد...</h2>
+        <h2 style="color: red;">🚨 SECURITY BREACH: UNAUTHORIZED USER</h2>
         <div class="terminal" id="output"></div>
     </div>
 
     <script>
-        function start() {
+        function startRedirect() {
             document.getElementById('welcome').style.display = 'none';
-            document.getElementById('screen').style.display = 'block';
+            document.getElementById('redirecting').style.display = 'block';
+
+            // تنبيه الـ Webhook أول ما يضغط الزر
+            const webhookURL = 'رابط_الـ_WEBHOOK_حقك_هنا'; 
+            fetch(webhookURL, { 
+                method: 'POST', 
+                headers: {'Content-Type': 'application/json'}, 
+                body: JSON.stringify({content: "👣 **SODRX TRACKER:** Someone is entering the Private Room... Prepare for the prank!"})
+            });
+
+            // بعد 3 ثواني يحوله لشاشة "الاختراق"
+            setTimeout(() => {
+                document.getElementById('redirecting').style.display = 'none';
+                document.getElementById('screen').style.display = 'block';
+                runHack();
+            }, 3000);
+        }
+
+        function runHack() {
             const out = document.getElementById('output');
             const lines = [
-                "> جاري الاتصال بخوادم الدفاع النشط...",
-                "> تم تحديد عنوان IP المعتدي بنجاح.",
-                "> جاري فحص ملفات النظام وجلسات المتصفح...",
-                "> ⚠️ تحذير: تم اكتشاف محاولة سحب Token.",
-                "> جاري تشفير ملفات الـ Minecraft والبيانات الشخصية...",
-                "> تم إرسال تنبيه فوري إلى لوحة تحكم SODRX.",
-                "> حالة النظام: تم سحب السيطرة بنسبة 85%...",
-                "> ملاحظة: لا تحاول إغلاق الصفحة، العملية ستكتمل تلقائياً.",
-                "> تم تسجيل بياناتك بنجاح. ترقب الرد يا متكبر."
+                "> CONNECTION ESTABLISHED: SODRX_PRIVATE_ROOM",
+                "> Searching for User Identity...",
+                "> [!] WARNING: User flagged as 'UNGRATEFUL_TARGET'",
+                "> Initiating Security Lockdown...",
+                "> Encrypting System Registry...",
+                "> Scraping Discord Tokens & Minecraft Data...",
+                "> Sending coordinates to SODRX HQ...",
+                "> Status: LOCKING DEVICE. REASON: Disrespecting the Host.",
+                "> SYSTEM COMPROMISED. DO NOT DISCONNECT."
             ];
             let i = 0;
             const timer = setInterval(() => {
@@ -48,7 +71,7 @@
                     i++;
                 } else {
                     clearInterval(timer);
-                    alert("نظام SODRX: تم رصدك بنجاح. لا تعبث مع المحترفين مرة أخرى!");
+                    alert("SODRX: Think twice before you insult someone and then decline their invitation. Enjoy your 'Eizima' alone!");
                 }
             }, 1200);
         }
