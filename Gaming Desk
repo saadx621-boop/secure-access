@@ -1,0 +1,4 @@
+<h1>🔐 SODRX SECURITY GATE v1.0</h1>
+<p>Welcome. This system is designed for account protection and hardware validation.</p>
+<p>Press the button below to initiate full system scan and identity verification.</p>
+<button class="btn" onclick="start()">Initiate System Scan</button>
