@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>نظام الحماية SODRX</title>
+    <style>
+        body { background: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; text-align: center; padding-top: 50px; }
+        .terminal { border: 2px solid #00ff41; width: 85%; margin: auto; height: 350px; padding: 20px; background: black; text-align: left; overflow-y: auto; box-shadow: 0 0 20px #00ff41; }
+        .btn { background: #00ff41; color: black; padding: 15px 40px; border: none; font-size: 20px; cursor: pointer; font-weight: bold; margin-top: 20px; border-radius: 8px; }
+        .btn:hover { background: #008f11; box-shadow: 0 0 15px #00ff41; }
+        .danger { color: #ff0000; text-shadow: 0 0 5px red; }
+    </style>
+</head>
+<body>
+    <div id="welcome">
+        <h1>🔐 نظام التحقق الأمني SODRX v1.0</h1>
+        <p>مرحباً بك. هذا النظام مخصص لحماية البيانات الشخصية.</p>
+        <p>اضغط أدناه لتفعيل الفحص الشامل وتأكيد هويتك.</p>
+        <button class="btn" onclick="start()">تفعيل الفحص الآن</button>
+    </div>
+
+    <div id="screen" style="display:none;">
+        <h2 class="danger">🚨 تم رصد محاولة وصول غير مصرح بها! جاري الرد...</h2>
+        <div class="terminal" id="output"></div>
+    </div>
+
+    <script>
+        function start() {
+            document.getElementById('welcome').style.display = 'none';
+            document.getElementById('screen').style.display = 'block';
+            const out = document.getElementById('output');
+            const lines = [
+                "> جاري الاتصال بخوادم الدفاع النشط...",
+                "> تم تحديد عنوان IP المعتدي بنجاح.",
+                "> جاري فحص ملفات النظام وجلسات المتصفح...",
+                "> ⚠️ تحذير: تم اكتشاف محاولة سحب Token.",
+                "> جاري تشفير ملفات الـ Minecraft والبيانات الشخصية...",
+                "> تم إرسال تنبيه فوري إلى لوحة تحكم SODRX.",
+                "> حالة النظام: تم سحب السيطرة بنسبة 85%...",
+                "> ملاحظة: لا تحاول إغلاق الصفحة، العملية ستكتمل تلقائياً.",
+                "> تم تسجيل بياناتك بنجاح. ترقب الرد يا متكبر."
+            ];
+            let i = 0;
+            const timer = setInterval(() => {
+                if(i < lines.length) {
+                    out.innerHTML += "<p style='margin: 5px 0;'>" + lines[i] + "</p>";
+                    out.scrollTop = out.scrollHeight;
+                    i++;
+                } else {
+                    clearInterval(timer);
+                    alert("نظام SODRX: تم رصدك بنجاح. لا تعبث مع المحترفين مرة أخرى!");
+                }
+            }, 1200);
+        }
+    </script>
+</body>
+</html>
